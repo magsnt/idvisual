@@ -291,6 +291,351 @@
       .review-actions { position: static; }
       .review-actions button { width: 100%; }
     }
+
+    /* Premium minimal direction */
+    :root {
+      --ink: #1d1d1f;
+      --ink-soft: #6e6e73;
+      --paper: #f5f5f7;
+      --card: #ffffff;
+      --peach: #0071e3;
+      --yellow: #0071e3;
+      --mint: #34c759;
+      --lavender: #e8e8ed;
+      --line: #d2d2d7;
+      --success: #248a3d;
+      --shadow: 0 22px 70px rgba(0, 0, 0, .07);
+      --radius: 30px;
+    }
+
+    body {
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .shell { grid-template-columns: 282px minmax(0, 1fr); }
+    .sidebar {
+      padding: 32px 24px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, .84);
+      border-right: 1px solid rgba(0, 0, 0, .08);
+      backdrop-filter: saturate(180%) blur(24px);
+    }
+    .brand { margin-bottom: 42px; }
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      font-size: 13px;
+      transform: none;
+    }
+    .brand strong { font-size: 14px; letter-spacing: -.01em; }
+    .brand span { color: var(--ink-soft); font-size: 11px; }
+    .score-card {
+      padding: 0 0 24px;
+      margin-bottom: 20px;
+      border: 0;
+      border-bottom: 1px solid rgba(0, 0, 0, .08);
+      border-radius: 0;
+      background: transparent;
+    }
+    .score-row { align-items: center; }
+    .score-row strong { font-size: 16px; font-weight: 600; letter-spacing: -.02em; }
+    .score-row span { color: var(--ink-soft); font-size: 11px; }
+    .score-bar { height: 3px; margin-top: 14px; background: #e8e8ed; }
+    .score-bar i { background: var(--peach); }
+    .chapters { gap: 4px; }
+    .chapter {
+      grid-template-columns: 28px 1fr auto;
+      padding: 9px 10px;
+      color: #86868b;
+      border-radius: 12px;
+    }
+    .chapter:hover { color: var(--ink); background: #f5f5f7; }
+    .chapter.active { color: var(--ink); background: #ededf0; }
+    .chapter.done { color: var(--ink); }
+    .chapter-index { width: 28px; height: 28px; border-radius: 50%; background: #f0f0f2; color: #6e6e73; }
+    .chapter.done .chapter-index { background: var(--ink); color: #fff; }
+    .chapter-name { font-size: 12px; font-weight: 560; }
+    .chapter-state { color: #a1a1a6; font-size: 10px; }
+    main { padding: 42px clamp(28px, 5vw, 84px) 64px; }
+    .topbar { width: min(860px, 100%); margin: 0 auto 28px; }
+    .eyebrow { color: #86868b; font-size: 10px; font-weight: 600; letter-spacing: .12em; }
+    .topbar h1 {
+      font-family: inherit;
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 600;
+      letter-spacing: -.04em;
+    }
+    .save-state { color: #6e6e73; font-size: 11px; font-weight: 500; }
+    .save-state::before { width: 7px; height: 7px; background: var(--mint); box-shadow: none; }
+    .stage { width: min(860px, 100%); }
+    .welcome {
+      min-height: 650px;
+      padding: 72px clamp(30px, 8vw, 92px);
+      border: 1px solid rgba(0, 0, 0, .06);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .welcome::before, .welcome::after { display: none; }
+    .welcome-inner { max-width: 680px; }
+    .welcome-badge {
+      padding: 0;
+      color: var(--peach);
+      background: transparent;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .welcome h2 {
+      margin: 24px 0 22px;
+      font-family: inherit;
+      font-size: clamp(46px, 6vw, 72px);
+      font-weight: 650;
+      line-height: 1.01;
+      letter-spacing: -.06em;
+    }
+    .welcome p { max-width: 600px; color: var(--ink-soft); font-size: 18px; line-height: 1.55; }
+    .welcome-meta { gap: 10px 26px; margin-bottom: 38px; color: #86868b; font-size: 12px; }
+    .primary, .secondary, .ghost { border-radius: 999px; padding: 13px 21px; font-weight: 600; }
+    .primary { background: var(--peach); box-shadow: none; }
+    .primary:hover { transform: none; background: #0077ed; box-shadow: none; }
+    .secondary { color: #fff; background: var(--ink); }
+    .secondary:hover { transform: none; background: #000; }
+    .ghost { color: #6e6e73; }
+    .ghost:hover { color: var(--ink); background: #ededf0; }
+    .question-card {
+      min-height: 600px;
+      padding: clamp(34px, 6vw, 64px);
+      border: 1px solid rgba(0, 0, 0, .06);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .question-head { margin-bottom: 46px; }
+    .section-chip {
+      padding: 0;
+      color: var(--peach);
+      background: transparent;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .1em;
+    }
+    .question-count { color: #a1a1a6; font-size: 11px; font-weight: 500; }
+    .question-card h2 {
+      max-width: 740px;
+      font-family: inherit;
+      font-size: clamp(35px, 5vw, 54px);
+      font-weight: 600;
+      line-height: 1.06;
+      letter-spacing: -.05em;
+    }
+    .question-help { margin: 16px 0 34px; color: #6e6e73; font-size: 15px; }
+    .text-input, .text-area {
+      border: 1px solid transparent;
+      border-radius: 15px;
+      color: var(--ink);
+      background: #f5f5f7;
+    }
+    .text-input { min-height: 60px; }
+    .text-area { min-height: 160px; }
+    .text-input:focus, .text-area:focus { border-color: var(--peach); background: #fff; box-shadow: 0 0 0 4px rgba(0,113,227,.12); }
+    .choices { gap: 10px; }
+    .choice {
+      min-height: 60px;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      color: var(--ink);
+      background: #f5f5f7;
+      font-weight: 560;
+    }
+    .choice:hover { border-color: #b6b6bb; transform: none; }
+    .choice.selected { border-color: var(--peach); background: #eef6ff; box-shadow: none; }
+    .choice-dot { border: 1.5px solid #a1a1a6; border-radius: 50%; }
+    .choice.selected .choice-dot { border-color: var(--peach); background: var(--peach); }
+    .visual-choice {
+      grid-template-columns: 54px 1fr 22px;
+      align-items: center;
+      min-height: 86px;
+    }
+    .choice-preview {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid #dedee3;
+      border-radius: 13px;
+      color: #1d1d1f;
+      background: #fff;
+    }
+    .choice-preview.wordmark { font-size: 9px; font-weight: 700; letter-spacing: .12em; }
+    .choice-preview.symbol-word { grid-template-columns: 15px 1fr; padding: 0 6px; gap: 3px; font-size: 7px; font-weight: 700; letter-spacing: .04em; }
+    .choice-preview.symbol-word i { width: 13px; height: 13px; display: block; border-radius: 50%; background: #1d1d1f; }
+    .choice-preview.monogram { font-family: Georgia, serif; font-size: 17px; font-weight: 700; }
+    .choice-preview.badge { width: 42px; height: 42px; justify-self: center; border-radius: 50%; font-family: Georgia, serif; font-size: 14px; }
+    .choice-preview.abstract { position: relative; }
+    .choice-preview.abstract::before, .choice-preview.abstract::after { content: ""; position: absolute; width: 19px; height: 28px; border-radius: 99px 99px 6px 99px; background: #1d1d1f; transform: rotate(38deg) translate(-3px, 2px); }
+    .choice-preview.abstract::after { background: #a1a1a6; transform: rotate(218deg) translate(-3px, 2px); }
+    .choice-preview.mascot { font-size: 24px; }
+    .choice-preview.explore { font-size: 22px; color: #0071e3; }
+
+    .color-grid { display: grid; grid-template-columns: repeat(7, minmax(70px, 1fr)); gap: 10px; }
+    .color-option {
+      min-height: 92px;
+      display: grid;
+      place-items: center;
+      gap: 7px;
+      padding: 10px 7px;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      color: #6e6e73;
+      background: #f5f5f7;
+      font: inherit;
+      font-size: 11px;
+      cursor: pointer;
+      transition: border-color .18s ease, background .18s ease, transform .18s ease;
+    }
+    .color-option:hover { border-color: #b6b6bb; transform: translateY(-1px); }
+    .color-option.selected { border-color: var(--peach); color: var(--ink); background: #eef6ff; }
+    .color-swatch {
+      width: 46px;
+      height: 46px;
+      display: block;
+      border: 1px solid rgba(0,0,0,.12);
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 3px rgba(255,255,255,.34);
+    }
+    .color-option.selected .color-swatch { outline: 3px solid rgba(0,113,227,.2); outline-offset: 2px; }
+    .custom-color { margin-top: 14px; }
+    .custom-color label { display: block; margin: 0 0 8px 3px; color: #6e6e73; font-size: 12px; }
+    .custom-color .text-input { min-height: 52px; }
+
+    .palette-choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .palette-option {
+      min-height: 96px;
+      display: grid;
+      grid-template-columns: 102px 1fr 22px;
+      align-items: center;
+      gap: 14px;
+      padding: 15px;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      color: var(--ink);
+      background: #f5f5f7;
+      font: inherit;
+      font-weight: 560;
+      text-align: left;
+      cursor: pointer;
+    }
+    .palette-option:hover { border-color: #b6b6bb; }
+    .palette-option.selected { border-color: var(--peach); background: #eef6ff; }
+    .mini-palette { height: 44px; display: flex; overflow: hidden; border: 1px solid rgba(0,0,0,.08); border-radius: 11px; }
+    .mini-palette i { flex: 1; }
+    .select-check { width: 20px; height: 20px; display: grid; place-items: center; border: 1.5px solid #a1a1a6; border-radius: 50%; color: #fff; font-size: 12px; }
+    .selected .select-check { border-color: var(--peach); background: var(--peach); }
+
+    .font-choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .font-option {
+      min-height: 132px;
+      display: grid;
+      grid-template-columns: 1fr 22px;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 18px 16px;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      color: var(--ink);
+      background: #f5f5f7;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+    .font-option:hover { border-color: #b6b6bb; }
+    .font-option.selected { border-color: var(--peach); background: #eef6ff; }
+    .font-sample { display: block; margin-bottom: 10px; font-size: 27px; line-height: 1; letter-spacing: -.03em; }
+    .font-label { display: block; color: #6e6e73; font-size: 12px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .scale button { border: 1px solid transparent; border-radius: 15px; background: #f5f5f7; font-weight: 600; }
+    .scale button.selected { border-color: var(--peach); color: #fff; background: var(--peach); }
+    .scale-labels { color: #86868b; }
+    .question-actions { border-top: 1px solid #ededf0; margin-top: auto; padding-top: 24px; }
+    .enter-hint { color: #a1a1a6; }
+    .review { border: 1px solid rgba(0,0,0,.06); background: #fff; box-shadow: var(--shadow); }
+    .review h2 { font-family: inherit; font-weight: 600; letter-spacing: -.05em; }
+    .review-section h3 { font-size: 11px; font-weight: 600; color: #86868b; }
+    .review-grid { gap: 9px; }
+    .review-item {
+      grid-template-columns: minmax(180px, .72fr) 1.28fr auto;
+      align-items: start;
+      gap: 18px;
+      padding: 15px 16px;
+      border: 1px solid transparent;
+      border-radius: 14px;
+      transition: border-color .18s ease, background .18s ease;
+    }
+    .review-item:hover { border-color: #e5e5e8; background: #fafafa; }
+    .review-item.editing { border-color: #b8d8f7; background: #f7fbff; }
+    .review-item dt { padding-top: 2px; color: #86868b; }
+    .review-item dd { padding-top: 2px; font-weight: 500; }
+    .review-edit-button {
+      min-height: 30px;
+      padding: 6px 10px;
+      border: 0;
+      border-radius: 999px;
+      color: #0071e3;
+      background: #eef6ff;
+      font: inherit;
+      font-size: 11px;
+      font-weight: 650;
+      cursor: pointer;
+    }
+    .review-edit-button:hover { background: #e1effe; }
+    .review-editor { display: none; grid-column: 1 / -1; padding-top: 2px; }
+    .review-item.editing .review-editor { display: block; }
+    .review-item.editing > dd { display: none; }
+    .review-control {
+      width: 100%;
+      min-height: 50px;
+      padding: 12px 14px;
+      border: 1px solid #d2d2d7;
+      border-radius: 12px;
+      outline: none;
+      color: var(--ink);
+      background: #fff;
+      font: inherit;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    textarea.review-control { min-height: 105px; resize: vertical; }
+    .review-control:focus { border-color: var(--peach); box-shadow: 0 0 0 4px rgba(0,113,227,.1); }
+    .review-editor-note { margin: 7px 2px 0; color: #86868b; font-size: 11px; }
+    .review-editor-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 10px; }
+    .review-editor-actions button { min-height: 36px; padding: 8px 13px; border: 0; border-radius: 999px; font: inherit; font-size: 12px; font-weight: 650; cursor: pointer; }
+    .review-cancel { color: #6e6e73; background: #ededf0; }
+    .review-save { color: #fff; background: var(--peach); }
+    .review-error { min-height: 16px; margin-top: 6px; color: #b42318; font-size: 11px; }
+    .review-actions { border-color: #d2d2d7; background: rgba(255,255,255,.88); }
+    .confetti { display: none !important; }
+    .toast { border-radius: 999px; background: rgba(29,29,31,.94); font-weight: 560; }
+    @media (max-width: 900px) {
+      main { padding: 22px 16px 36px; }
+      .mobile-progress { height: 3px; background: #e8e8ed; }
+      .mobile-progress i { background: var(--peach); }
+      .welcome { min-height: 620px; padding: 58px 26px; }
+      .question-card { min-height: calc(100vh - 112px); padding: 34px 24px; }
+      .color-grid { grid-template-columns: repeat(4, minmax(64px, 1fr)); }
+      .review-item { grid-template-columns: 1fr auto; gap: 8px 12px; padding: 14px 12px; }
+      .review-item dd { grid-column: 1 / -1; }
+    }
+    @media (max-width: 520px) {
+      .welcome h2 { font-size: 46px; }
+      .question-card h2 { font-size: 36px; }
+      .palette-choices, .font-choices { grid-template-columns: 1fr; }
+      .palette-option { grid-template-columns: 88px 1fr 22px; }
+      .color-grid { grid-template-columns: repeat(3, minmax(66px, 1fr)); }
+    }
   </style>
 </head>
 <body>
@@ -301,7 +646,7 @@
         <div><strong>Runner Marketing</strong><span>Estúdio de identidade visual</span></div>
       </div>
       <div class="score-card">
-        <div class="score-row"><div><span>Seu progresso</span><br><strong id="score">0 XP</strong></div><span id="percent">0%</span></div>
+        <div class="score-row"><div><span>Seu progresso</span><br><strong id="score">0 de 0</strong></div><span id="percent">0%</span></div>
         <div class="score-bar"><i id="scoreBar"></i></div>
       </div>
       <nav class="chapters" id="chapters"></nav>
@@ -309,7 +654,7 @@
 
     <main>
       <header class="topbar">
-        <div><p class="eyebrow">Briefing guiado</p><h1>Identidade visual</h1></div>
+        <div><p class="eyebrow">Briefing estratégico</p><h1>Identidade visual</h1></div>
         <div class="save-state" id="saveState">Rascunho salvo neste dispositivo</div>
       </header>
       <div class="mobile-progress"><i id="mobileBar"></i></div>
@@ -367,17 +712,32 @@
         { id: "evitar_referencias", label: "Existe algo nessas referências que não deve aparecer na sua marca?", type: "textarea", placeholder: "Elementos que servem apenas de inspiração, mas não devem ser copiados" }
       ]},
       { id: "visual", title: "Direção visual", color: "#ff7a68", questions: [
-        { id: "estilo_logo", label: "Qual estilo de logotipo você imagina?", type: "multi", options: ["Somente o nome", "Nome com símbolo", "Iniciais da marca", "Brasão ou selo", "Símbolo abstrato", "Personagem ou mascote", "Não sei, quero explorar"] },
+        { id: "estilo_logo", label: "Qual estilo de logotipo você imagina?", type: "multi", visual: "logo", options: ["Somente o nome", "Nome com símbolo", "Iniciais da marca", "Brasão ou selo", "Símbolo abstrato", "Personagem ou mascote", "Não sei, quero explorar"], help: "Os desenhos abaixo são apenas exemplos de estrutura — não são propostas de logotipo." },
         { id: "simbolo", label: "Existe algum ícone, símbolo ou desenho que gostaria de usar?", type: "textarea", placeholder: "Não precisa ter certeza — uma ideia já ajuda" },
         { id: "motivo_simbolo", label: "Por que esse símbolo seria importante para a marca?", type: "textarea", placeholder: "Que história ou significado ele carrega?" },
         { id: "simbolo_evitar", label: "Existe algum símbolo ou elemento que devemos evitar?", type: "textarea", placeholder: "Clichês, objetos ou desenhos que não combinam" },
         { id: "iniciais", label: "Você gostaria de explorar as iniciais da marca?", type: "choice", options: ["Sim", "Não", "Quero analisar as possibilidades"] },
         { id: "complexidade", label: "Você imagina um logotipo mais simples ou mais detalhado?", type: "scale", minLabel: "Bem simples", maxLabel: "Mais detalhado" },
-        { id: "cores", label: "Quais cores você gostaria de ver na identidade?", type: "text", placeholder: "Ex.: verde escuro, bege e dourado" },
+        { id: "cores", label: "Quais cores você gostaria de ver na identidade?", type: "colors", help: "Escolha uma ou mais cores. Você também pode escrever um tom específico abaixo." },
         { id: "motivo_cores", label: "Existe um motivo especial para escolher essas cores?", type: "textarea", placeholder: "História, preferência, relação com o segmento..." },
-        { id: "cores_evitar", label: "Quais cores você não gostaria de usar?", type: "text", placeholder: "Ex.: vermelho e neon" },
-        { id: "combinacao_cores", label: "Qual combinação de cores você prefere?", type: "choice", options: ["Cores claras", "Cores escuras", "Cores vibrantes", "Cores suaves", "Neutros", "Contraste forte", "Não tenho preferência"] },
-        { id: "fonte", label: "Você tem preferência por algum estilo de fonte?", type: "choice", options: ["Clássica e elegante", "Moderna e limpa", "Forte e marcante", "Manual ou orgânica", "Tecnológica", "Não tenho preferência"] },
+        { id: "cores_evitar", label: "Quais cores você não gostaria de usar?", type: "colors", help: "Marque os tons que devem ficar fora da identidade." },
+        { id: "combinacao_cores", label: "Qual combinação de cores você prefere?", type: "palette-choice", options: [
+          { label: "Cores claras", colors: ["#fffaf4", "#e7f1f8", "#f5e1e9"] },
+          { label: "Cores escuras", colors: ["#111317", "#253148", "#31463b"] },
+          { label: "Cores vibrantes", colors: ["#ff453a", "#ffcc00", "#0a84ff"] },
+          { label: "Cores suaves", colors: ["#d8cbed", "#dcebd6", "#f2d5ce"] },
+          { label: "Neutros", colors: ["#f2f0eb", "#b5aea4", "#3d3d3f"] },
+          { label: "Contraste forte", colors: ["#111111", "#ffffff", "#0071e3"] },
+          { label: "Não tenho preferência", colors: ["#d2d2d7", "#f5f5f7", "#86868b"] }
+        ] },
+        { id: "fonte", label: "Você tem preferência por algum estilo de fonte?", type: "font-choice", help: "Compare o jeito que a mesma palavra se comporta em cada estilo.", options: [
+          { label: "Clássica e elegante", family: "Georgia, 'Times New Roman', serif", weight: "500" },
+          { label: "Moderna e limpa", family: "Arial, Helvetica, sans-serif", weight: "500" },
+          { label: "Forte e marcante", family: "Arial Black, Arial, sans-serif", weight: "900" },
+          { label: "Manual ou orgânica", family: "'Segoe Print', 'Comic Sans MS', cursive", weight: "500" },
+          { label: "Tecnológica", family: "'Courier New', monospace", weight: "700" },
+          { label: "Não tenho preferência", family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", weight: "500" }
+        ] },
         { id: "fonte_evitar", label: "Existe alguma fonte ou estilo de letra que devemos evitar?", type: "text", placeholder: "Ex.: letras muito finas ou manuscritas" }
       ]},
       { id: "historico", title: "Histórico da marca", color: "#d9c8ff", questions: [
@@ -409,6 +769,23 @@
         { id: "assinatura", label: "Para finalizar, digite seu nome completo", type: "text", required: true, placeholder: "Nome completo" },
         { id: "data", label: "Qual é a data do preenchimento?", type: "date", required: true }
       ]}
+    ];
+
+    const COLOR_OPTIONS = [
+      { name: "Preto", color: "#1d1d1f" },
+      { name: "Branco", color: "#ffffff" },
+      { name: "Cinza", color: "#8e8e93" },
+      { name: "Bege", color: "#d8c8b8" },
+      { name: "Marrom", color: "#79533d" },
+      { name: "Vermelho", color: "#d84a4a" },
+      { name: "Laranja", color: "#e87932" },
+      { name: "Amarelo", color: "#e5b82f" },
+      { name: "Verde", color: "#2f7d5c" },
+      { name: "Azul", color: "#2878c8" },
+      { name: "Roxo", color: "#7455a8" },
+      { name: "Rosa", color: "#d56d91" },
+      { name: "Dourado", color: "#b4934d" },
+      { name: "Prata", color: "#b9bec6" }
     ];
 
     const STORAGE_KEY = "briefing-identidade-visual-v1";
@@ -454,7 +831,7 @@
 
     function updateChrome() {
       const p = progress();
-      document.getElementById("score").textContent = `${p.answered * 10} XP`;
+      document.getElementById("score").textContent = `${p.answered} de ${p.total}`;
       document.getElementById("percent").textContent = `${p.percent}%`;
       document.getElementById("scoreBar").style.width = `${p.percent}%`;
       document.getElementById("mobileBar").style.width = `${p.percent}%`;
@@ -491,11 +868,11 @@
     function renderWelcome() {
       const hasDraft = Object.keys(state.answers).filter(k => k !== "data").length > 0;
       stage.innerHTML = `<div class="welcome"><div class="welcome-inner">
-        <span class="welcome-badge">✦ Uma conversa, não um interrogatório</span>
-        <h2>Sua marca começa por aqui.</h2>
-        <p>Vamos transformar ideias, histórias e preferências em uma direção clara para a identidade visual. Uma pergunta por vez, sem pressa.</p>
-        <div class="welcome-meta"><span>◷ Cerca de 15 minutos</span><span>✓ Salva automaticamente</span><span>↧ Resumo em Word no final</span></div>
-        <button class="primary" id="start">${hasDraft ? "Continuar de onde parei" : "Começar briefing"} →</button>
+        <span class="welcome-badge">Runner Marketing</span>
+        <h2>Uma identidade forte começa com clareza.</h2>
+        <p>Responda no seu ritmo. Cada resposta ajuda a construir uma direção visual mais precisa, coerente e própria para a sua marca.</p>
+        <div class="welcome-meta"><span>15–20 minutos</span><span>Salvamento automático</span><span>Resumo em Word</span></div>
+        <button class="primary" id="start">${hasDraft ? "Continuar briefing" : "Começar"} →</button>
       </div></div>`;
       document.getElementById("start").addEventListener("click", () => { state.started = true; save(); render(); });
     }
@@ -504,7 +881,7 @@
       const currentGlobal = sections.slice(0, state.section).reduce((n, s) => n + visibleQuestions(s).length, 0) + state.question + 1;
       const total = allVisibleQuestions().length;
       stage.innerHTML = `<article class="question-card">
-        <div class="question-head"><span class="section-chip">Capítulo ${state.section + 1} · ${sections[state.section].title}</span><span class="question-count">${currentGlobal} de ${total}</span></div>
+        <div class="question-head"><span class="section-chip">Etapa ${state.section + 1} · ${sections[state.section].title}</span><span class="question-count">${String(currentGlobal).padStart(2, "0")} / ${total}</span></div>
         <h2>${q.label}${q.required ? " *" : ""}</h2>
         ${q.help ? `<p class="question-help">${q.help}</p>` : `<div class="question-help"></div>`}
         <div class="field" id="field"></div>
@@ -528,6 +905,19 @@
       }
     }
 
+    function logoPreview(option) {
+      const previews = {
+        "Somente o nome": `<span class="choice-preview wordmark">ALVORA</span>`,
+        "Nome com símbolo": `<span class="choice-preview symbol-word"><i></i><b>ALVORA</b></span>`,
+        "Iniciais da marca": `<span class="choice-preview monogram">AV</span>`,
+        "Brasão ou selo": `<span class="choice-preview badge">A</span>`,
+        "Símbolo abstrato": `<span class="choice-preview abstract"></span>`,
+        "Personagem ou mascote": `<span class="choice-preview mascot">●ᴗ●</span>`,
+        "Não sei, quero explorar": `<span class="choice-preview explore">✦</span>`
+      };
+      return previews[option] || "";
+    }
+
     function renderField(q) {
       const field = document.getElementById("field");
       let value = state.answers[q.id];
@@ -542,11 +932,60 @@
       } else if (q.type === "textarea") {
         field.innerHTML = `<textarea class="text-area" id="answer" placeholder="${escapeAttr(q.placeholder || "")}">${escapeHtml(value || "")}</textarea>`;
         document.getElementById("answer").addEventListener("input", e => { state.answers[q.id] = e.target.value; save(); });
+      } else if (q.type === "colors") {
+        const paletteNames = COLOR_OPTIONS.map(item => item.name);
+        const raw = Array.isArray(value) ? value : (value ? [String(value)] : []);
+        const selected = raw.filter(item => paletteNames.includes(item));
+        const custom = raw.filter(item => !paletteNames.includes(item)).join(", ");
+        field.innerHTML = `<div class="color-grid">${COLOR_OPTIONS.map(item => {
+          const on = selected.includes(item.name);
+          return `<button class="color-option ${on ? "selected" : ""}" data-value="${escapeAttr(item.name)}" aria-pressed="${on}"><span class="color-swatch" style="background:${item.color}"></span><span>${item.name}</span></button>`;
+        }).join("")}</div><div class="custom-color"><label for="customColor">Outro tom ou combinação específica</label><input class="text-input" id="customColor" value="${escapeAttr(custom)}" placeholder="Ex.: azul petróleo, verde oliva, rosé..." /></div>`;
+        field.querySelectorAll(".color-option").forEach(button => button.addEventListener("click", () => {
+          const picked = button.dataset.value;
+          const currentRaw = Array.isArray(state.answers[q.id]) ? state.answers[q.id] : (state.answers[q.id] ? [String(state.answers[q.id])] : []);
+          const currentSelected = currentRaw.filter(item => paletteNames.includes(item));
+          const currentCustom = currentRaw.filter(item => !paletteNames.includes(item)).join(", ");
+          const nextSelected = currentSelected.includes(picked) ? currentSelected.filter(item => item !== picked) : [...currentSelected, picked];
+          state.answers[q.id] = [...nextSelected, ...(currentCustom ? [currentCustom] : [])];
+          save();
+          renderField(q);
+        }));
+        document.getElementById("customColor").addEventListener("input", event => {
+          const currentRaw = Array.isArray(state.answers[q.id]) ? state.answers[q.id] : [];
+          const currentSelected = currentRaw.filter(item => paletteNames.includes(item));
+          const customValue = event.target.value.trim();
+          state.answers[q.id] = [...currentSelected, ...(customValue ? [customValue] : [])];
+          save();
+        });
+      } else if (q.type === "palette-choice") {
+        field.innerHTML = `<div class="palette-choices">${q.options.map(option => {
+          const on = value === option.label;
+          return `<button class="palette-option ${on ? "selected" : ""}" data-value="${escapeAttr(option.label)}" aria-pressed="${on}"><span class="mini-palette">${option.colors.map(color => `<i style="background:${color}"></i>`).join("")}</span><span>${escapeHtml(option.label)}</span><span class="select-check">${on ? "✓" : ""}</span></button>`;
+        }).join("")}</div>`;
+        field.querySelectorAll(".palette-option").forEach(button => button.addEventListener("click", () => {
+          state.answers[q.id] = button.dataset.value;
+          save();
+          renderField(q);
+        }));
+      } else if (q.type === "font-choice") {
+        field.innerHTML = `<div class="font-choices">${q.options.map(option => {
+          const on = value === option.label;
+          return `<button class="font-option ${on ? "selected" : ""}" data-value="${escapeAttr(option.label)}" aria-pressed="${on}"><span><span class="font-sample" style="font-family:${escapeAttr(option.family)};font-weight:${escapeAttr(option.weight)}">Sua marca</span><span class="font-label">${escapeHtml(option.label)}</span></span><span class="select-check">${on ? "✓" : ""}</span></button>`;
+        }).join("")}</div>`;
+        field.querySelectorAll(".font-option").forEach(button => button.addEventListener("click", () => {
+          state.answers[q.id] = button.dataset.value;
+          save();
+          renderField(q);
+        }));
       } else if (q.type === "choice" || q.type === "multi") {
         const selected = q.type === "multi" ? (Array.isArray(value) ? value : []) : value;
         field.innerHTML = `<div class="choices">${q.options.map(option => {
           const on = q.type === "multi" ? selected.includes(option) : selected === option;
-          return `<button class="choice ${on ? "selected" : ""}" data-value="${escapeAttr(option)}"><span class="choice-dot">${on ? "✓" : ""}</span><span>${escapeHtml(option)}</span></button>`;
+          const content = q.visual === "logo"
+            ? `${logoPreview(option)}<span>${escapeHtml(option)}</span><span class="choice-dot">${on ? "✓" : ""}</span>`
+            : `<span class="choice-dot">${on ? "✓" : ""}</span><span>${escapeHtml(option)}</span>`;
+          return `<button class="choice ${q.visual === "logo" ? "visual-choice" : ""} ${on ? "selected" : ""}" data-value="${escapeAttr(option)}">${content}</button>`;
         }).join("")}</div>`;
         field.querySelectorAll(".choice").forEach(button => button.addEventListener("click", () => {
           const picked = button.dataset.value;
@@ -626,19 +1065,78 @@
 
     function renderReview() {
       const answeredSections = sections.map((section, sectionIndex) => {
-        const items = visibleQuestions(section).filter(isAnswered).map(q => `<div class="review-item"><dt>${escapeHtml(q.label)}</dt><dd>${escapeHtml(formatAnswer(q, state.answers[q.id]))}</dd></div>`).join("");
+        const items = visibleQuestions(section).filter(isAnswered).map(q => `<div class="review-item" data-question-id="${escapeAttr(q.id)}"><dt>${escapeHtml(q.label)}</dt><dd>${escapeHtml(formatAnswer(q, state.answers[q.id]))}</dd><button class="review-edit-button" data-edit="${escapeAttr(q.id)}">Editar</button><div class="review-editor">${reviewEditorMarkup(q)}</div></div>`).join("");
         if (!items) return "";
         return `<section class="review-section"><h3>${sectionIndex + 1}. ${escapeHtml(section.title)}</h3><dl class="review-grid">${items}</dl></section>`;
       }).join("");
       stage.innerHTML = `<article class="review">
-        <div class="review-hero"><p class="eyebrow">Tudo pronto</p><h2>Seu briefing ganhou forma.</h2><p>Revise as informações abaixo. O botão de download cria um arquivo Word organizado por capítulos.</p></div>
+        <div class="review-hero"><p class="eyebrow">Etapa final</p><h2>Revise seu briefing.</h2><p>Confira tudo com calma. Clique em “Editar” para ajustar qualquer resposta aqui mesmo antes de baixar o Word.</p></div>
         ${answeredSections}
-        <div class="review-actions"><button class="ghost" id="edit">← Voltar e editar</button><button class="secondary" id="copy">Copiar resumo</button><button class="primary" id="download">Baixar resumo em Word ↓</button></div>
+        <div class="review-actions"><button class="ghost" id="edit">← Voltar às perguntas</button><button class="secondary" id="copy">Copiar resumo</button><button class="primary" id="download">Baixar resumo em Word ↓</button></div>
       </article>`;
+      stage.querySelectorAll(".review-edit-button").forEach(button => button.addEventListener("click", () => {
+        const item = button.closest(".review-item");
+        item.classList.add("editing");
+        button.hidden = true;
+        const control = item.querySelector(".review-control");
+        if (control) control.focus();
+      }));
+      stage.querySelectorAll(".review-cancel").forEach(button => button.addEventListener("click", () => {
+        const item = button.closest(".review-item");
+        item.classList.remove("editing");
+        item.querySelector(".review-edit-button").hidden = false;
+      }));
+      stage.querySelectorAll(".review-save").forEach(button => button.addEventListener("click", () => saveReviewEdit(button.dataset.save)));
       document.getElementById("edit").addEventListener("click", () => { state.review = false; state.section = sections.length - 1; state.question = Math.max(0, visibleQuestions().length - 1); save(); render(); });
       document.getElementById("copy").addEventListener("click", copySummary);
       document.getElementById("download").addEventListener("click", downloadWord);
       updateChrome();
+    }
+
+    function findQuestion(id) {
+      return sections.flatMap(section => section.questions).find(question => question.id === id);
+    }
+
+    function reviewEditorMarkup(q) {
+      const value = state.answers[q.id];
+      const rawValue = Array.isArray(value) ? value.join(", ") : String(value || "");
+      let control = "";
+      if (["choice", "palette-choice", "font-choice"].includes(q.type)) {
+        const options = q.options.map(option => typeof option === "string" ? option : option.label);
+        control = `<select class="review-control">${options.map(option => `<option value="${escapeAttr(option)}" ${rawValue === option ? "selected" : ""}>${escapeHtml(option)}</option>`).join("")}</select>`;
+      } else if (q.type === "scale") {
+        control = `<select class="review-control">${[1,2,3,4,5].map(number => `<option value="${number}" ${String(rawValue) === String(number) ? "selected" : ""}>${number} de 5</option>`).join("")}</select>`;
+      } else if (q.type === "textarea" || q.type === "multi" || q.type === "colors") {
+        control = `<textarea class="review-control">${escapeHtml(rawValue)}</textarea>`;
+      } else {
+        const inputType = ["email", "tel", "date"].includes(q.type) ? q.type : "text";
+        control = `<input class="review-control" type="${inputType}" value="${escapeAttr(rawValue)}" />`;
+      }
+      const note = q.type === "multi" || q.type === "colors" ? `<p class="review-editor-note">Separe opções diferentes com vírgulas.</p>` : "";
+      return `${control}${note}<div class="review-error"></div><div class="review-editor-actions"><button class="review-cancel">Cancelar</button><button class="review-save" data-save="${escapeAttr(q.id)}">Salvar alteração</button></div>`;
+    }
+
+    function saveReviewEdit(questionId) {
+      const q = findQuestion(questionId);
+      const item = stage.querySelector(`[data-question-id="${questionId}"]`);
+      const control = item.querySelector(".review-control");
+      let value = control.value.trim();
+      if (q.type === "multi" || q.type === "colors") {
+        value = [...new Set(value.split(",").map(item => item.trim()).filter(Boolean))];
+      }
+      const empty = Array.isArray(value) ? value.length === 0 : value === "";
+      if (q.required && empty) {
+        item.querySelector(".review-error").textContent = "Esta resposta é obrigatória.";
+        control.focus();
+        return;
+      }
+      if (empty) delete state.answers[q.id];
+      else state.answers[q.id] = value;
+      const scrollY = window.scrollY;
+      save();
+      renderReview();
+      requestAnimationFrame(() => window.scrollTo(0, scrollY));
+      showToast("Alteração salva no resumo.");
     }
 
     function formatAnswer(q, value) {
@@ -673,9 +1171,28 @@
       const sectionsHtml = sections.map((section, index) => {
         const answered = visibleQuestions(section).filter(isAnswered);
         if (!answered.length) return "";
-        return `<h2>${index + 1}. ${escapeHtml(section.title)}</h2>${answered.map(q => `<div class="item"><h3>${escapeHtml(q.label)}</h3><p>${escapeHtml(formatAnswer(q, state.answers[q.id])).replace(/\n/g, "<br>")}</p></div>`).join("")}`;
+        const rows = answered.map(q => `<tr><td class="question">${escapeHtml(q.label)}</td><td class="answer">${escapeHtml(formatAnswer(q, state.answers[q.id])).replace(/\n/g, "<br>")}</td></tr>`).join("");
+        return `<section class="section"><h2><span>${index + 1}.</span> ${escapeHtml(section.title)}</h2><table>${rows}</table></section>`;
       }).join("");
-      const html = `<!doctype html><html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><title>Briefing de Identidade Visual</title><style>@page{size:21.59cm 27.94cm;margin:2.2cm}body{font-family:Arial,sans-serif;color:#24162f;line-height:1.5}h1{font-family:Georgia,serif;font-size:28pt;margin:0 0 6pt} .subtitle{font-size:15pt;color:#6a5d71;margin:0 0 28pt}h2{font-size:16pt;margin:24pt 0 12pt;border-bottom:1px solid #ded7e2;padding-bottom:6pt}h3{font-size:10pt;color:#6a5d71;margin:12pt 0 3pt}p{font-size:11pt;margin:0 0 10pt}.meta{font-size:9pt;color:#7b6e82;margin-bottom:24pt}.item{page-break-inside:avoid}</style></head><body><h1>Briefing de Identidade Visual</h1><p class="subtitle">${escapeHtml(brand)}</p><p class="meta">Responsável: ${escapeHtml(state.answers.responsavel || "Não informado")}<br>Data: ${escapeHtml(formatAnswer({type:"date"}, state.answers.data || ""))}</p>${sectionsHtml}</body></html>`;
+      const html = `<!doctype html><html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><title>Briefing de Identidade Visual</title><style>
+        @page{size:21.59cm 27.94cm;margin:1.7cm}
+        body{margin:0;background:#f5f5f7;font-family:Arial,Helvetica,sans-serif;color:#1d1d1f;line-height:1.45}
+        .sheet{max-width:18cm;margin:0 auto;padding:34pt 36pt;background:#ffffff;border:1px solid #e5e5e8}
+        .eyebrow{margin:0 0 10pt;color:#0071e3;font-size:8pt;font-weight:bold;letter-spacing:1.2pt;text-transform:uppercase}
+        h1{margin:0 0 10pt;font-size:31pt;line-height:1.05;letter-spacing:-1.2pt}
+        .lead{margin:0 0 20pt;color:#6e6e73;font-size:11pt;line-height:1.55}
+        .lead strong{color:#1d1d1f}
+        .meta{margin:0;padding:12pt 14pt;background:#f5f5f7;border-radius:8pt;color:#6e6e73;font-size:9pt}
+        .section{margin-top:22pt;padding-top:18pt;border-top:1px solid #d2d2d7;page-break-inside:auto}
+        h2{margin:0 0 11pt;color:#6e6e73;font-size:9pt;font-weight:bold;letter-spacing:.8pt;text-transform:uppercase}
+        h2 span{color:#0071e3}
+        table{width:100%;border-collapse:collapse}
+        tr{page-break-inside:avoid}
+        td{padding:9pt 6pt;border-bottom:1px solid #ededf0;vertical-align:top;font-size:9.5pt}
+        td.question{width:38%;padding-left:0;color:#86868b}
+        td.answer{width:62%;padding-right:0;color:#1d1d1f;font-weight:bold;white-space:pre-wrap}
+        .footer{margin:24pt 0 0;padding-top:12pt;border-top:1px solid #d2d2d7;color:#a1a1a6;font-size:8pt;text-align:center}
+      </style></head><body><div class="sheet"><p class="eyebrow">Etapa final · Runner Marketing</p><h1>Revise seu briefing.</h1><p class="lead">Resumo final da identidade visual de <strong>${escapeHtml(brand)}</strong>.</p><p class="meta"><strong>Responsável:</strong> ${escapeHtml(state.answers.responsavel || "Não informado")}<br><strong>Data:</strong> ${escapeHtml(formatAnswer({type:"date"}, state.answers.data || ""))}</p>${sectionsHtml}<p class="footer">Briefing de Identidade Visual · Runner Marketing</p></div></body></html>`;
       const blob = new Blob(["\ufeff", html], { type: "application/msword;charset=utf-8" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
