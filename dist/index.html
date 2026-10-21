@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#24162f" />
+  <title>Briefing de Identidade Visual</title>
+  <meta name="description" content="Um briefing leve, guiado e completo para criar uma identidade visual com direção." />
+  <style>
+    :root {
+      --ink: #24162f;
+      --ink-soft: #574a60;
+      --paper: #fffaf2;
+      --card: #ffffff;
+      --peach: #ff7a68;
+      --yellow: #ffd45c;
+      --mint: #b8e5d1;
+      --lavender: #d9c8ff;
+      --line: #e8dfd4;
+      --success: #27795c;
+      --shadow: 0 22px 55px rgba(36, 22, 47, 0.12);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 8%, rgba(255, 212, 92, .35), transparent 24rem),
+        radial-gradient(circle at 92% 12%, rgba(217, 200, 255, .42), transparent 28rem),
+        var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button, input, textarea { font: inherit; }
+    button { cursor: pointer; }
+
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 310px minmax(0, 1fr);
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 34px 28px;
+      color: #fff;
+      background: var(--ink);
+      overflow: auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 34px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 900;
+      transform: rotate(-4deg);
+    }
+
+    .brand strong { display: block; font-size: 15px; letter-spacing: .02em; }
+    .brand span { color: rgba(255,255,255,.62); font-size: 12px; }
+
+    .score-card {
+      padding: 18px;
+      margin-bottom: 28px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 22px;
+      background: rgba(255,255,255,.07);
+    }
+
+    .score-row { display: flex; justify-content: space-between; align-items: end; gap: 18px; }
+    .score-row strong { font-size: 28px; }
+    .score-row span { color: rgba(255,255,255,.68); font-size: 12px; }
+    .score-bar { height: 7px; margin-top: 14px; overflow: hidden; border-radius: 999px; background: rgba(255,255,255,.12); }
+    .score-bar i { display: block; width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--peach), var(--yellow)); transition: width .35s ease; }
+
+    .chapters { display: grid; gap: 7px; }
+    .chapter {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 30px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 11px;
+      border: 0;
+      border-radius: 14px;
+      color: rgba(255,255,255,.58);
+      text-align: left;
+      background: transparent;
+      transition: .2s ease;
+    }
+
+    .chapter:hover, .chapter.active { color: #fff; background: rgba(255,255,255,.09); }
+    .chapter.done { color: #fff; }
+    .chapter-index { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 10px; background: rgba(255,255,255,.09); font-size: 12px; font-weight: 800; }
+    .chapter.done .chapter-index { background: var(--mint); color: var(--ink); }
+    .chapter-name { font-size: 13px; font-weight: 650; }
+    .chapter-state { font-size: 12px; }
+
+    main {
+      min-width: 0;
+      padding: 40px clamp(22px, 5vw, 76px) 56px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .eyebrow { margin: 0 0 5px; color: var(--peach); font-size: 12px; font-weight: 850; letter-spacing: .14em; text-transform: uppercase; }
+    .topbar h1 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(24px, 3vw, 40px); font-weight: 700; letter-spacing: -.03em; }
+    .save-state { display: flex; align-items: center; gap: 8px; white-space: nowrap; color: var(--success); font-size: 12px; font-weight: 750; }
+    .save-state::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 0 5px rgba(184,229,209,.28); }
+
+    .stage {
+      width: min(880px, 100%);
+      margin: 0 auto;
+    }
+
+    .welcome {
+      min-height: 660px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 54px 30px;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.96), rgba(255,250,242,.92)),
+        var(--card);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .welcome::before, .welcome::after { content: ""; position: absolute; border-radius: 50%; pointer-events: none; }
+    .welcome::before { width: 240px; height: 240px; left: -100px; top: -90px; background: var(--yellow); opacity: .58; }
+    .welcome::after { width: 270px; height: 270px; right: -125px; bottom: -115px; background: var(--lavender); opacity: .6; }
+    .welcome-inner { position: relative; z-index: 1; max-width: 660px; }
+    .welcome-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px; border-radius: 999px; background: #f4ece3; font-size: 12px; font-weight: 800; }
+    .welcome h2 { margin: 24px 0 18px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(42px, 7vw, 76px); line-height: .98; letter-spacing: -.055em; }
+    .welcome p { max-width: 590px; margin: 0 auto 28px; color: var(--ink-soft); font-size: 17px; line-height: 1.65; }
+    .welcome-meta { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px 22px; margin-bottom: 34px; color: var(--ink-soft); font-size: 13px; }
+    .welcome-meta span { display: inline-flex; align-items: center; gap: 7px; }
+
+    .primary, .secondary, .ghost {
+      border: 0;
+      border-radius: 15px;
+      padding: 14px 20px;
+      font-weight: 850;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .primary { color: #fff; background: var(--ink); box-shadow: 0 10px 24px rgba(36,22,47,.18); }
+    .primary:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(36,22,47,.25); }
+    .secondary { color: var(--ink); background: var(--yellow); }
+    .secondary:hover { transform: translateY(-2px); }
+    .ghost { color: var(--ink-soft); background: transparent; }
+    .ghost:hover { background: #f5eee6; color: var(--ink); }
+
+    .question-card {
+      min-height: 590px;
+      display: flex;
+      flex-direction: column;
+      padding: clamp(28px, 5vw, 54px);
+      border: 1px solid rgba(36,22,47,.06);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.96);
+      box-shadow: var(--shadow);
+      animation: rise .32s ease both;
+    }
+
+    @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    .question-head { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 34px; }
+    .section-chip { display: inline-flex; align-items: center; gap: 8px; padding: 7px 11px; border-radius: 999px; background: #f4ece3; font-size: 11px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+    .question-count { color: #8f8297; font-size: 12px; font-weight: 750; }
+    .question-card h2 { max-width: 760px; margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(32px, 5vw, 55px); line-height: 1.06; letter-spacing: -.045em; }
+    .question-help { margin: 15px 0 30px; color: var(--ink-soft); font-size: 15px; line-height: 1.6; }
+    .field { margin-top: 6px; }
+    .text-input, .text-area {
+      width: 100%;
+      border: 2px solid var(--line);
+      border-radius: 17px;
+      outline: none;
+      color: var(--ink);
+      background: #fffdf9;
+      transition: border-color .18s, box-shadow .18s;
+    }
+    .text-input { min-height: 58px; padding: 0 18px; }
+    .text-area { min-height: 150px; padding: 17px 18px; resize: vertical; line-height: 1.55; }
+    .text-input:focus, .text-area:focus { border-color: var(--peach); box-shadow: 0 0 0 5px rgba(255,122,104,.12); }
+    .choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .choice {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 2px solid var(--line);
+      border-radius: 16px;
+      color: var(--ink);
+      background: #fffdf9;
+      text-align: left;
+      font-weight: 700;
+      transition: .18s ease;
+    }
+    .choice:hover { border-color: #cfc2d6; transform: translateY(-1px); }
+    .choice.selected { border-color: var(--ink); background: #f1eafb; box-shadow: 0 7px 18px rgba(36,22,47,.08); }
+    .choice-dot { flex: 0 0 auto; width: 20px; height: 20px; display: grid; place-items: center; border: 2px solid #c7bacd; border-radius: 7px; font-size: 12px; }
+    .choice.selected .choice-dot { border-color: var(--ink); background: var(--ink); color: #fff; }
+    .scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+    .scale button { min-height: 76px; border: 2px solid var(--line); border-radius: 17px; background: #fffdf9; color: var(--ink); font-size: 20px; font-weight: 900; }
+    .scale button.selected { border-color: var(--ink); background: var(--yellow); }
+    .scale-labels { display: flex; justify-content: space-between; margin-top: 10px; color: var(--ink-soft); font-size: 12px; }
+    .required-note { margin-top: 12px; color: #a63d36; font-size: 12px; font-weight: 750; min-height: 18px; }
+    .question-actions { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: auto; padding-top: 36px; }
+    .action-right { display: flex; gap: 9px; align-items: center; }
+    .enter-hint { color: #9b8fa2; font-size: 11px; }
+
+    .review {
+      padding: clamp(28px, 5vw, 54px);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.97);
+      box-shadow: var(--shadow);
+    }
+    .review-hero { padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+    .review h2 { margin: 0 0 12px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(38px, 6vw, 62px); letter-spacing: -.05em; line-height: 1; }
+    .review-hero p { margin: 0; color: var(--ink-soft); line-height: 1.6; }
+    .review-section { padding: 26px 0; border-bottom: 1px solid var(--line); }
+    .review-section h3 { margin: 0 0 16px; font-size: 14px; letter-spacing: .09em; text-transform: uppercase; }
+    .review-grid { display: grid; gap: 13px; }
+    .review-item { display: grid; grid-template-columns: minmax(180px, .7fr) 1.3fr; gap: 20px; }
+    .review-item dt { color: var(--ink-soft); font-size: 13px; }
+    .review-item dd { margin: 0; font-size: 14px; font-weight: 650; white-space: pre-wrap; }
+    .review-actions { position: sticky; bottom: 14px; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 32px -10px -10px; padding: 14px; border: 1px solid var(--line); border-radius: 20px; background: rgba(255,250,242,.93); backdrop-filter: blur(14px); }
+
+    .toast { position: fixed; right: 24px; bottom: 24px; z-index: 20; padding: 13px 16px; border-radius: 14px; color: #fff; background: var(--ink); box-shadow: var(--shadow); font-size: 13px; font-weight: 750; opacity: 0; transform: translateY(14px); pointer-events: none; transition: .25s ease; }
+    .toast.show { opacity: 1; transform: none; }
+    .confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 19; }
+    .confetti i { position: absolute; top: -30px; width: 10px; height: 18px; animation: fall 1.6s ease-in forwards; }
+    @keyframes fall { to { transform: translate(var(--drift), 110vh) rotate(720deg); } }
+
+    .mobile-progress { display: none; }
+
+    @media (max-width: 900px) {
+      .shell { display: block; }
+      .sidebar { display: none; }
+      main { padding: 20px 16px 34px; }
+      .topbar { margin-bottom: 18px; }
+      .topbar h1 { font-size: 24px; }
+      .save-state { display: none; }
+      .mobile-progress { display: block; height: 7px; overflow: hidden; border-radius: 999px; background: #eadfd5; margin: 0 0 18px; }
+      .mobile-progress i { display: block; width: 0; height: 100%; background: linear-gradient(90deg, var(--peach), var(--yellow)); transition: width .3s; }
+      .welcome { min-height: 610px; }
+      .question-card { min-height: calc(100vh - 100px); padding: 27px 22px; }
+      .choices { grid-template-columns: 1fr; }
+      .review-item { grid-template-columns: 1fr; gap: 5px; }
+      .enter-hint { display: none; }
+      .question-actions { align-items: stretch; }
+      .action-right { flex: 1; justify-content: flex-end; }
+    }
+
+    @media (max-width: 520px) {
+      .topbar .eyebrow { display: none; }
+      .welcome { min-height: calc(100vh - 84px); padding: 44px 20px; }
+      .welcome h2 { font-size: 48px; }
+      .welcome p { font-size: 15px; }
+      .question-card h2 { font-size: 35px; }
+      .scale { gap: 6px; }
+      .scale button { min-height: 62px; }
+      .question-actions .ghost { padding-left: 8px; padding-right: 8px; }
+      .review-actions { position: static; }
+      .review-actions button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Progresso do briefing">
+      <div class="brand">
+        <div class="brand-mark">R</div>
+        <div><strong>Runner Marketing</strong><span>Estúdio de identidade visual</span></div>
+      </div>
+      <div class="score-card">
+        <div class="score-row"><div><span>Seu progresso</span><br><strong id="score">0 XP</strong></div><span id="percent">0%</span></div>
+        <div class="score-bar"><i id="scoreBar"></i></div>
+      </div>
+      <nav class="chapters" id="chapters"></nav>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div><p class="eyebrow">Briefing guiado</p><h1>Identidade visual</h1></div>
+        <div class="save-state" id="saveState">Rascunho salvo neste dispositivo</div>
+      </header>
+      <div class="mobile-progress"><i id="mobileBar"></i></div>
+      <section class="stage" id="stage" aria-live="polite"></section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <div class="confetti" id="confetti"></div>
+
+  <script>
+    const sections = [
+      { id: "inicio", title: "Você e a marca", color: "#ffd45c", questions: [
+        { id: "responsavel", label: "Como você se chama?", type: "text", required: true, placeholder: "Seu nome completo", help: "Você será nossa pessoa de contato durante o projeto." },
+        { id: "empresa", label: "Qual é o nome da empresa ou marca?", type: "text", required: true, placeholder: "Nome atual da marca" },
+        { id: "whatsapp", label: "Qual é o melhor WhatsApp para contato?", type: "tel", required: true, placeholder: "(00) 00000-0000" },
+        { id: "email", label: "E o melhor e-mail?", type: "email", required: true, placeholder: "voce@empresa.com.br" },
+        { id: "instagram", label: "Qual é o Instagram da marca?", type: "text", placeholder: "@suaempresa", help: "Se ainda não existir, pode deixar em branco." },
+        { id: "cidade", label: "Em qual cidade e estado a marca atua?", type: "text", required: true, placeholder: "Ex.: Cuiabá, MT" }
+      ]},
+      { id: "nome", title: "Nome e história", color: "#ff7a68", questions: [
+        { id: "nome_logo", label: "Qual nome deve aparecer no logotipo?", type: "text", required: true, placeholder: "Escreva exatamente como deve aparecer" },
+        { id: "subtitulo", label: "O logotipo terá um subtítulo ou descrição?", type: "text", placeholder: "Ex.: Arquitetura e Interiores" },
+        { id: "significado_nome", label: "Qual é a história ou o significado por trás desse nome?", type: "textarea", placeholder: "Conte de onde veio a ideia..." },
+        { id: "destaque_nome", label: "Alguma palavra, letra ou parte do nome merece mais destaque?", type: "text", placeholder: "Ex.: as iniciais RM" }
+      ]},
+      { id: "negocio", title: "Negócio", color: "#b8e5d1", questions: [
+        { id: "faz", label: "Em poucas palavras, o que a sua empresa faz?", type: "textarea", required: true, placeholder: "Explique como se estivesse contando para alguém que acabou de conhecer a marca." },
+        { id: "produtos", label: "Quais são os principais produtos ou serviços?", type: "textarea", required: true, placeholder: "Liste os mais importantes" },
+        { id: "diferencial", label: "Qual é o principal diferencial da empresa?", type: "textarea", required: true, placeholder: "O que vocês fazem melhor ou de um jeito único?" },
+        { id: "valores", label: "Quais valores a marca precisa transmitir?", type: "multi", required: true, options: ["Confiança", "Qualidade", "Inovação", "Exclusividade", "Proximidade", "Segurança", "Cuidado", "Autoridade", "Elegância", "Modernidade"], help: "Escolha quantos fizerem sentido." },
+        { id: "lembrada", label: "Como você gostaria que a marca fosse lembrada?", type: "textarea", placeholder: "Complete: quero que as pessoas pensem que somos..." },
+        { id: "planos", label: "Quais são os planos da marca para os próximos anos?", type: "textarea", placeholder: "Expansão, novos produtos, novas cidades..." }
+      ]},
+      { id: "publico", title: "Público", color: "#d9c8ff", questions: [
+        { id: "publico_principal", label: "Quem é o público principal da marca?", type: "textarea", required: true, placeholder: "Conte quem são essas pessoas ou empresas" },
+        { id: "faixa_etaria", label: "Qual é a faixa etária principal?", type: "choice", options: ["Até 17 anos", "18 a 24 anos", "25 a 34 anos", "35 a 44 anos", "45 a 59 anos", "60 anos ou mais", "Público de diferentes idades"] },
+        { id: "tipo_publico", label: "A marca atende principalmente qual público?", type: "choice", options: ["Pessoas", "Empresas", "Profissionais autônomos", "Governo ou instituições", "Outro"] },
+        { id: "poder_compra", label: "Qual é o poder de compra aproximado do público?", type: "choice", options: ["Econômico", "Intermediário", "Alto", "Luxo", "Diversificado", "Não sei ainda"] },
+        { id: "problema", label: "Qual problema, necessidade ou desejo a marca resolve?", type: "textarea", required: true, placeholder: "O que muda na vida do cliente depois de escolher vocês?" }
+      ]},
+      { id: "personalidade", title: "Personalidade", color: "#ffd45c", questions: [
+        { id: "palavras", label: "Quais palavras combinam com a personalidade da marca?", type: "multi", required: true, options: ["Moderna", "Criativa", "Acolhedora", "Forte", "Ousada", "Tecnológica", "Exclusiva", "Profissional", "Autoridade", "Humanizada", "Divertida", "Minimalista"] },
+        { id: "marca_pessoa", label: "Se a marca fosse uma pessoa, como ela se comportaria?", type: "textarea", placeholder: "Como fala, se veste e trata as pessoas?" },
+        { id: "sensacao", label: "Qual sensação o cliente deve ter ao encontrar a marca?", type: "textarea", required: true, placeholder: "Ex.: segurança, desejo, tranquilidade, energia..." },
+        { id: "comunicacao", label: "A comunicação deve ser mais próxima ou mais formal?", type: "scale", minLabel: "Bem próxima", maxLabel: "Bem formal" },
+        { id: "delicadeza_forca", label: "A marca precisa transmitir mais delicadeza ou mais força?", type: "scale", minLabel: "Mais delicadeza", maxLabel: "Mais força" }
+      ]},
+      { id: "referencias", title: "Mercado e referências", color: "#b8e5d1", questions: [
+        { id: "concorrentes", label: "Quais são os principais concorrentes?", type: "textarea", placeholder: "Nomes, @ do Instagram ou links" },
+        { id: "gosta_concorrentes", label: "O que você gosta na comunicação visual deles?", type: "textarea", placeholder: "Cores, símbolos, organização, estilo..." },
+        { id: "nao_gosta_concorrentes", label: "E o que você não gosta?", type: "textarea", placeholder: "O que devemos evitar?" },
+        { id: "marcas_admira", label: "Existe alguma marca de outro segmento que você admira visualmente?", type: "textarea", placeholder: "Nomes ou links e o motivo" },
+        { id: "links_referencias", label: "Compartilhe pelo menos quatro referências visuais", type: "textarea", placeholder: "Cole links do Pinterest, Instagram, Drive ou sites — um por linha", help: "Você também pode enviar os arquivos separadamente para a equipe." },
+        { id: "agrada_referencias", label: "O que mais agrada em cada referência?", type: "textarea", placeholder: "Ajude a gente a entender o que chamou sua atenção" },
+        { id: "evitar_referencias", label: "Existe algo nessas referências que não deve aparecer na sua marca?", type: "textarea", placeholder: "Elementos que servem apenas de inspiração, mas não devem ser copiados" }
+      ]},
+      { id: "visual", title: "Direção visual", color: "#ff7a68", questions: [
+        { id: "estilo_logo", label: "Qual estilo de logotipo você imagina?", type: "multi", options: ["Somente o nome", "Nome com símbolo", "Iniciais da marca", "Brasão ou selo", "Símbolo abstrato", "Personagem ou mascote", "Não sei, quero explorar"] },
+        { id: "simbolo", label: "Existe algum ícone, símbolo ou desenho que gostaria de usar?", type: "textarea", placeholder: "Não precisa ter certeza — uma ideia já ajuda" },
+        { id: "motivo_simbolo", label: "Por que esse símbolo seria importante para a marca?", type: "textarea", placeholder: "Que história ou significado ele carrega?" },
+        { id: "simbolo_evitar", label: "Existe algum símbolo ou elemento que devemos evitar?", type: "textarea", placeholder: "Clichês, objetos ou desenhos que não combinam" },
+        { id: "iniciais", label: "Você gostaria de explorar as iniciais da marca?", type: "choice", options: ["Sim", "Não", "Quero analisar as possibilidades"] },
+        { id: "complexidade", label: "Você imagina um logotipo mais simples ou mais detalhado?", type: "scale", minLabel: "Bem simples", maxLabel: "Mais detalhado" },
+        { id: "cores", label: "Quais cores você gostaria de ver na identidade?", type: "text", placeholder: "Ex.: verde escuro, bege e dourado" },
+        { id: "motivo_cores", label: "Existe um motivo especial para escolher essas cores?", type: "textarea", placeholder: "História, preferência, relação com o segmento..." },
+        { id: "cores_evitar", label: "Quais cores você não gostaria de usar?", type: "text", placeholder: "Ex.: vermelho e neon" },
+        { id: "combinacao_cores", label: "Qual combinação de cores você prefere?", type: "choice", options: ["Cores claras", "Cores escuras", "Cores vibrantes", "Cores suaves", "Neutros", "Contraste forte", "Não tenho preferência"] },
+        { id: "fonte", label: "Você tem preferência por algum estilo de fonte?", type: "choice", options: ["Clássica e elegante", "Moderna e limpa", "Forte e marcante", "Manual ou orgânica", "Tecnológica", "Não tenho preferência"] },
+        { id: "fonte_evitar", label: "Existe alguma fonte ou estilo de letra que devemos evitar?", type: "text", placeholder: "Ex.: letras muito finas ou manuscritas" }
+      ]},
+      { id: "historico", title: "Histórico da marca", color: "#d9c8ff", questions: [
+        { id: "tem_logo", label: "A empresa já possui ou já teve um logotipo?", type: "choice", required: true, options: ["Sim", "Não"] },
+        { id: "motivo_mudanca", label: "Por que você deseja mudar o logotipo atual?", type: "textarea", showWhen: ["tem_logo", "Sim"], placeholder: "O que deixou de funcionar?" },
+        { id: "manter_logo", label: "O que gostaria de manter do logotipo atual?", type: "textarea", showWhen: ["tem_logo", "Sim"], placeholder: "Cores, símbolo, tipografia, reconhecimento..." },
+        { id: "remover_logo", label: "O que não gostaria de manter?", type: "textarea", showWhen: ["tem_logo", "Sim"], placeholder: "O que precisa mudar de verdade?" },
+        { id: "link_logo_atual", label: "Compartilhe o logotipo atual em boa qualidade", type: "text", showWhen: ["tem_logo", "Sim"], placeholder: "Cole um link do Drive, Dropbox ou outro serviço" }
+      ]},
+      { id: "aplicacoes", title: "Aplicações", color: "#ffd45c", questions: [
+        { id: "materiais", label: "Em quais materiais a identidade será utilizada?", type: "multi", required: true, options: ["Instagram", "Facebook", "TikTok", "Site", "Loja virtual", "Cartão de visitas", "Papel timbrado", "Uniforme", "Placa ou fachada", "Veículo", "Apresentações", "Anúncios", "Materiais impressos", "Embalagens"] },
+        { id: "aplicacao_principal", label: "Qual será a principal aplicação do logotipo?", type: "text", required: true, placeholder: "Onde ele mais precisa funcionar bem?" },
+        { id: "limitacao", label: "Existe alguma limitação que precisamos considerar?", type: "textarea", placeholder: "Técnica, de produção, de tamanho ou outra" },
+        { id: "dados_papelaria", label: "Quais dados devem aparecer nos materiais de papelaria?", type: "textarea", placeholder: "Telefone, endereço, site, registro profissional..." },
+        { id: "info_pendente", label: "Existe alguma informação que ainda não está disponível?", type: "textarea", placeholder: "O que será enviado ou definido depois?" }
+      ]},
+      { id: "fotografia", title: "Fotografia", color: "#b8e5d1", questions: [
+        { id: "tem_fotos", label: "Você possui fotografias profissionais para usar na marca?", type: "choice", required: true, options: ["Sim", "Não"] },
+        { id: "links_fotos", label: "Compartilhe até três fotografias", type: "textarea", showWhen: ["tem_fotos", "Sim"], placeholder: "Cole links do Drive, Dropbox ou outro serviço — um por linha" },
+        { id: "autorizacao_fotos", label: "As fotografias têm autorização para uso comercial?", type: "choice", showWhen: ["tem_fotos", "Sim"], options: ["Sim", "Não", "Ainda preciso confirmar"] }
+      ]},
+      { id: "final", title: "Fechamento", color: "#ff7a68", questions: [
+        { id: "info_extra", label: "Existe alguma informação importante que não perguntamos?", type: "textarea", placeholder: "Este espaço é todo seu" },
+        { id: "ideia_especifica", label: "Há alguma ideia específica que gostaria que fosse considerada?", type: "textarea", placeholder: "Uma imagem, conceito ou direção que não sai da sua cabeça" },
+        { id: "expectativas", label: "Quais são as suas maiores expectativas para o projeto?", type: "textarea", required: true, placeholder: "Como você vai saber que o resultado deu certo?" },
+        { id: "autoriza_portfolio", label: "Você autoriza a divulgação do projeto final no portfólio e nas redes sociais da Runner Marketing?", type: "choice", required: true, options: ["Sim, autorizo", "Não autorizo"] },
+        { id: "autoriza_divulgacao_fotos", label: "Se houver fotografias, autoriza o uso delas junto com o projeto na divulgação?", type: "choice", showWhen: ["tem_fotos", "Sim"], options: ["Sim, autorizo", "Não autorizo"] },
+        { id: "confirmacao", label: "Você confirma que revisou as informações?", type: "choice", required: true, options: ["Confirmo que revisei e que estas informações poderão orientar o desenvolvimento do projeto."] },
+        { id: "assinatura", label: "Para finalizar, digite seu nome completo", type: "text", required: true, placeholder: "Nome completo" },
+        { id: "data", label: "Qual é a data do preenchimento?", type: "date", required: true }
+      ]}
+    ];
+
+    const STORAGE_KEY = "briefing-identidade-visual-v1";
+    const state = { started: false, section: 0, question: 0, review: false, answers: {} };
+    const stage = document.getElementById("stage");
+    const chapters = document.getElementById("chapters");
+    const toast = document.getElementById("toast");
+
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if (saved && saved.answers) Object.assign(state, saved);
+    } catch (_) {}
+
+    if (!state.answers.data) state.answers.data = new Date().toISOString().slice(0, 10);
+
+    function visibleQuestions(section = sections[state.section]) {
+      return section.questions.filter(q => !q.showWhen || state.answers[q.showWhen[0]] === q.showWhen[1]);
+    }
+
+    function allVisibleQuestions() {
+      return sections.flatMap(section => visibleQuestions(section));
+    }
+
+    function isAnswered(q) {
+      const value = state.answers[q.id];
+      return Array.isArray(value) ? value.length > 0 : value !== undefined && String(value).trim() !== "";
+    }
+
+    function progress() {
+      const list = allVisibleQuestions();
+      const answered = list.filter(isAnswered).length;
+      return { answered, total: list.length, percent: list.length ? Math.round(answered / list.length * 100) : 0 };
+    }
+
+    function save() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      const el = document.getElementById("saveState");
+      if (el) {
+        el.textContent = "Salvando...";
+        clearTimeout(save.timer);
+        save.timer = setTimeout(() => el.textContent = "Rascunho salvo neste dispositivo", 500);
+      }
+      updateChrome();
+    }
+
+    function updateChrome() {
+      const p = progress();
+      document.getElementById("score").textContent = `${p.answered * 10} XP`;
+      document.getElementById("percent").textContent = `${p.percent}%`;
+      document.getElementById("scoreBar").style.width = `${p.percent}%`;
+      document.getElementById("mobileBar").style.width = `${p.percent}%`;
+      chapters.innerHTML = sections.map((section, index) => {
+        const qs = visibleQuestions(section);
+        const done = qs.length > 0 && qs.every(isAnswered);
+        const active = state.started && !state.review && index === state.section;
+        return `<button class="chapter ${done ? "done" : ""} ${active ? "active" : ""}" data-section="${index}" aria-label="Abrir capítulo ${section.title}">
+          <span class="chapter-index">${done ? "✓" : index + 1}</span>
+          <span class="chapter-name">${section.title}</span>
+          <span class="chapter-state">${qs.filter(isAnswered).length}/${qs.length}</span>
+        </button>`;
+      }).join("");
+      chapters.querySelectorAll("button").forEach(button => button.addEventListener("click", () => {
+        state.started = true;
+        state.review = false;
+        state.section = Number(button.dataset.section);
+        state.question = 0;
+        save();
+        render();
+      }));
+    }
+
+    function render() {
+      updateChrome();
+      if (!state.started) return renderWelcome();
+      if (state.review) return renderReview();
+      const qs = visibleQuestions();
+      if (!qs.length) return nextSection();
+      state.question = Math.max(0, Math.min(state.question, qs.length - 1));
+      renderQuestion(qs[state.question], qs);
+    }
+
+    function renderWelcome() {
+      const hasDraft = Object.keys(state.answers).filter(k => k !== "data").length > 0;
+      stage.innerHTML = `<div class="welcome"><div class="welcome-inner">
+        <span class="welcome-badge">✦ Uma conversa, não um interrogatório</span>
+        <h2>Sua marca começa por aqui.</h2>
+        <p>Vamos transformar ideias, histórias e preferências em uma direção clara para a identidade visual. Uma pergunta por vez, sem pressa.</p>
+        <div class="welcome-meta"><span>◷ Cerca de 15 minutos</span><span>✓ Salva automaticamente</span><span>↧ Resumo em Word no final</span></div>
+        <button class="primary" id="start">${hasDraft ? "Continuar de onde parei" : "Começar briefing"} →</button>
+      </div></div>`;
+      document.getElementById("start").addEventListener("click", () => { state.started = true; save(); render(); });
+    }
+
+    function renderQuestion(q, qs) {
+      const currentGlobal = sections.slice(0, state.section).reduce((n, s) => n + visibleQuestions(s).length, 0) + state.question + 1;
+      const total = allVisibleQuestions().length;
+      stage.innerHTML = `<article class="question-card">
+        <div class="question-head"><span class="section-chip">Capítulo ${state.section + 1} · ${sections[state.section].title}</span><span class="question-count">${currentGlobal} de ${total}</span></div>
+        <h2>${q.label}${q.required ? " *" : ""}</h2>
+        ${q.help ? `<p class="question-help">${q.help}</p>` : `<div class="question-help"></div>`}
+        <div class="field" id="field"></div>
+        <div class="required-note" id="error"></div>
+        <div class="question-actions">
+          <button class="ghost" id="back">← Voltar</button>
+          <div class="action-right">${!q.required ? `<button class="ghost" id="skip">Pular</button>` : ""}<span class="enter-hint">Enter para avançar</span><button class="primary" id="next">${isLastQuestion() ? "Revisar respostas" : "Continuar"} →</button></div>
+        </div>
+      </article>`;
+      renderField(q);
+      document.getElementById("back").addEventListener("click", previous);
+      document.getElementById("next").addEventListener("click", () => advance(q));
+      const skip = document.getElementById("skip");
+      if (skip) skip.addEventListener("click", () => { delete state.answers[q.id]; save(); goForward(); });
+      const input = document.querySelector(".text-input, .text-area");
+      if (input) {
+        setTimeout(() => input.focus(), 60);
+        input.addEventListener("keydown", e => {
+          if (e.key === "Enter" && !e.shiftKey && q.type !== "textarea") { e.preventDefault(); advance(q); }
+        });
+      }
+    }
+
+    function renderField(q) {
+      const field = document.getElementById("field");
+      const value = state.answers[q.id];
+      if (["text", "email", "tel", "date"].includes(q.type)) {
+        field.innerHTML = `<input class="text-input" type="${q.type}" id="answer" value="${escapeAttr(value || "")}" placeholder="${escapeAttr(q.placeholder || "")}" autocomplete="${q.type === "email" ? "email" : q.type === "tel" ? "tel" : "off"}" />`;
+        document.getElementById("answer").addEventListener("input", e => { state.answers[q.id] = e.target.value; save(); });
+      } else if (q.type === "textarea") {
+        field.innerHTML = `<textarea class="text-area" id="answer" placeholder="${escapeAttr(q.placeholder || "")}">${escapeHtml(value || "")}</textarea>`;
+        document.getElementById("answer").addEventListener("input", e => { state.answers[q.id] = e.target.value; save(); });
+      } else if (q.type === "choice" || q.type === "multi") {
+        const selected = q.type === "multi" ? (Array.isArray(value) ? value : []) : value;
+        field.innerHTML = `<div class="choices">${q.options.map(option => {
+          const on = q.type === "multi" ? selected.includes(option) : selected === option;
+          return `<button class="choice ${on ? "selected" : ""}" data-value="${escapeAttr(option)}"><span class="choice-dot">${on ? "✓" : ""}</span><span>${escapeHtml(option)}</span></button>`;
+        }).join("")}</div>`;
+        field.querySelectorAll(".choice").forEach(button => button.addEventListener("click", () => {
+          const picked = button.dataset.value;
+          if (q.type === "multi") {
+            const current = Array.isArray(state.answers[q.id]) ? [...state.answers[q.id]] : [];
+            state.answers[q.id] = current.includes(picked) ? current.filter(v => v !== picked) : [...current, picked];
+          } else {
+            state.answers[q.id] = picked;
+          }
+          save();
+          renderField(q);
+        }));
+      } else if (q.type === "scale") {
+        field.innerHTML = `<div class="scale">${[1,2,3,4,5].map(n => `<button data-value="${n}" class="${String(value) === String(n) ? "selected" : ""}">${n}</button>`).join("")}</div><div class="scale-labels"><span>${q.minLabel}</span><span>${q.maxLabel}</span></div>`;
+        field.querySelectorAll("button").forEach(button => button.addEventListener("click", () => { state.answers[q.id] = button.dataset.value; save(); renderField(q); }));
+      }
+    }
+
+    function advance(q) {
+      if (q.required && !isAnswered(q)) {
+        document.getElementById("error").textContent = "Responda esta pergunta para continuar.";
+        const field = document.getElementById("field");
+        field.animate([{ transform: "translateX(-5px)" }, { transform: "translateX(5px)" }, { transform: "none" }], { duration: 220 });
+        return;
+      }
+      goForward();
+    }
+
+    function goForward() {
+      const qs = visibleQuestions();
+      if (state.question < qs.length - 1) {
+        state.question++;
+      } else if (state.section < sections.length - 1) {
+        state.section++;
+        state.question = 0;
+        celebrateSection();
+      } else {
+        state.review = true;
+        celebrateSection(true);
+      }
+      save();
+      render();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function nextSection() {
+      if (state.section < sections.length - 1) { state.section++; state.question = 0; save(); render(); }
+      else { state.review = true; save(); render(); }
+    }
+
+    function previous() {
+      if (state.question > 0) state.question--;
+      else if (state.section > 0) { state.section--; state.question = Math.max(0, visibleQuestions().length - 1); }
+      else state.started = false;
+      save(); render(); window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function isLastQuestion() {
+      return state.section === sections.length - 1 && state.question === visibleQuestions().length - 1;
+    }
+
+    function renderReview() {
+      const answeredSections = sections.map((section, sectionIndex) => {
+        const items = visibleQuestions(section).filter(isAnswered).map(q => `<div class="review-item"><dt>${escapeHtml(q.label)}</dt><dd>${escapeHtml(formatAnswer(q, state.answers[q.id]))}</dd></div>`).join("");
+        if (!items) return "";
+        return `<section class="review-section"><h3>${sectionIndex + 1}. ${escapeHtml(section.title)}</h3><dl class="review-grid">${items}</dl></section>`;
+      }).join("");
+      stage.innerHTML = `<article class="review">
+        <div class="review-hero"><p class="eyebrow">Tudo pronto</p><h2>Seu briefing ganhou forma.</h2><p>Revise as informações abaixo. O botão de download cria um arquivo Word organizado por capítulos.</p></div>
+        ${answeredSections}
+        <div class="review-actions"><button class="ghost" id="edit">← Voltar e editar</button><button class="secondary" id="copy">Copiar resumo</button><button class="primary" id="download">Baixar resumo em Word ↓</button></div>
+      </article>`;
+      document.getElementById("edit").addEventListener("click", () => { state.review = false; state.section = sections.length - 1; state.question = Math.max(0, visibleQuestions().length - 1); save(); render(); });
+      document.getElementById("copy").addEventListener("click", copySummary);
+      document.getElementById("download").addEventListener("click", downloadWord);
+      updateChrome();
+    }
+
+    function formatAnswer(q, value) {
+      if (Array.isArray(value)) return value.join(", ");
+      if (q.type === "date" && value) {
+        const [y,m,d] = value.split("-");
+        return `${d}/${m}/${y}`;
+      }
+      if (q.type === "scale") return `${value} de 5 (${q.minLabel} → ${q.maxLabel})`;
+      return String(value || "");
+    }
+
+    function plainSummary() {
+      const brand = state.answers.nome_logo || state.answers.empresa || "Marca";
+      let text = `BRIEFING DE IDENTIDADE VISUAL\n${brand}\n\n`;
+      sections.forEach((section, index) => {
+        const answered = visibleQuestions(section).filter(isAnswered);
+        if (!answered.length) return;
+        text += `${index + 1}. ${section.title.toUpperCase()}\n`;
+        answered.forEach(q => text += `${q.label}\n${formatAnswer(q, state.answers[q.id])}\n\n`);
+      });
+      return text.trim();
+    }
+
+    async function copySummary() {
+      try { await navigator.clipboard.writeText(plainSummary()); showToast("Resumo copiado."); }
+      catch (_) { showToast("Não foi possível copiar. Baixe o arquivo em Word."); }
+    }
+
+    function downloadWord() {
+      const brand = state.answers.nome_logo || state.answers.empresa || "Marca";
+      const sectionsHtml = sections.map((section, index) => {
+        const answered = visibleQuestions(section).filter(isAnswered);
+        if (!answered.length) return "";
+        return `<h2>${index + 1}. ${escapeHtml(section.title)}</h2>${answered.map(q => `<div class="item"><h3>${escapeHtml(q.label)}</h3><p>${escapeHtml(formatAnswer(q, state.answers[q.id])).replace(/\n/g, "<br>")}</p></div>`).join("")}`;
+      }).join("");
+      const html = `<!doctype html><html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><title>Briefing de Identidade Visual</title><style>@page{size:21.59cm 27.94cm;margin:2.2cm}body{font-family:Arial,sans-serif;color:#24162f;line-height:1.5}h1{font-family:Georgia,serif;font-size:28pt;margin:0 0 6pt} .subtitle{font-size:15pt;color:#6a5d71;margin:0 0 28pt}h2{font-size:16pt;margin:24pt 0 12pt;border-bottom:1px solid #ded7e2;padding-bottom:6pt}h3{font-size:10pt;color:#6a5d71;margin:12pt 0 3pt}p{font-size:11pt;margin:0 0 10pt}.meta{font-size:9pt;color:#7b6e82;margin-bottom:24pt}.item{page-break-inside:avoid}</style></head><body><h1>Briefing de Identidade Visual</h1><p class="subtitle">${escapeHtml(brand)}</p><p class="meta">Responsável: ${escapeHtml(state.answers.responsavel || "Não informado")}<br>Data: ${escapeHtml(formatAnswer({type:"date"}, state.answers.data || ""))}</p>${sectionsHtml}</body></html>`;
+      const blob = new Blob(["\ufeff", html], { type: "application/msword;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `briefing-${slugify(brand)}.doc`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1500);
+      showToast("Resumo em Word baixado.");
+      celebrateSection(true);
+    }
+
+    function slugify(value) {
+      return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "identidade-visual";
+    }
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" })[char]);
+    }
+    function escapeAttr(value) { return escapeHtml(value); }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toast.classList.remove("show"), 2300);
+    }
+
+    function celebrateSection(big = false) {
+      const colors = ["#ff7a68", "#ffd45c", "#b8e5d1", "#d9c8ff", "#24162f"];
+      const amount = big ? 70 : 28;
+      const box = document.getElementById("confetti");
+      box.innerHTML = Array.from({ length: amount }, (_, i) => `<i style="left:${Math.random()*100}%;background:${colors[i%colors.length]};--drift:${Math.round((Math.random()-.5)*180)}px;animation-delay:${Math.random()*.35}s"></i>`).join("");
+      setTimeout(() => box.innerHTML = "", 2100);
+    }
+
+    render();
+  </script>
+</body>
+</html>
