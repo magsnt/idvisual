@@ -422,8 +422,6 @@
       if (saved && saved.answers) Object.assign(state, saved);
     } catch (_) {}
 
-    if (!state.answers.data) state.answers.data = new Date().toISOString().slice(0, 10);
-
     function visibleQuestions(section = sections[state.section]) {
       return section.questions.filter(q => !q.showWhen || state.answers[q.showWhen[0]] === q.showWhen[1]);
     }
@@ -433,7 +431,12 @@
     }
 
     function isAnswered(q) {
-      const value = state.answers[q.id];
+      let value = state.answers[q.id];
+      if (q.type === "date" && !value) {
+        value = new Date().toISOString().slice(0, 10);
+        state.answers[q.id] = value;
+        save();
+      }
       return Array.isArray(value) ? value.length > 0 : value !== undefined && String(value).trim() !== "";
     }
 
@@ -581,8 +584,15 @@
         state.question = 0;
         celebrateSection();
       } else {
-        state.review = true;
-        celebrateSection(true);
+        const missing = firstMissingRequired();
+        if (missing) {
+          state.section = missing.section;
+          state.question = missing.question;
+          showToast("Falta só completar os campos essenciais marcados com *.");
+        } else {
+          state.review = true;
+          celebrateSection(true);
+        }
       }
       save();
       render();
@@ -603,6 +613,15 @@
 
     function isLastQuestion() {
       return state.section === sections.length - 1 && state.question === visibleQuestions().length - 1;
+    }
+
+    function firstMissingRequired() {
+      for (let sectionIndex = 0; sectionIndex < sections.length; sectionIndex++) {
+        const qs = visibleQuestions(sections[sectionIndex]);
+        const questionIndex = qs.findIndex(q => q.required && !isAnswered(q));
+        if (questionIndex >= 0) return { section: sectionIndex, question: questionIndex };
+      }
+      return null;
     }
 
     function renderReview() {
