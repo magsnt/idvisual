@@ -291,6 +291,194 @@
       .review-actions { position: static; }
       .review-actions button { width: 100%; }
     }
+
+    /* Premium minimal direction */
+    :root {
+      --ink: #1d1d1f;
+      --ink-soft: #6e6e73;
+      --paper: #f5f5f7;
+      --card: #ffffff;
+      --peach: #0071e3;
+      --yellow: #0071e3;
+      --mint: #34c759;
+      --lavender: #e8e8ed;
+      --line: #d2d2d7;
+      --success: #248a3d;
+      --shadow: 0 22px 70px rgba(0, 0, 0, .07);
+      --radius: 30px;
+    }
+
+    body {
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .shell { grid-template-columns: 282px minmax(0, 1fr); }
+    .sidebar {
+      padding: 32px 24px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, .84);
+      border-right: 1px solid rgba(0, 0, 0, .08);
+      backdrop-filter: saturate(180%) blur(24px);
+    }
+    .brand { margin-bottom: 42px; }
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      font-size: 13px;
+      transform: none;
+    }
+    .brand strong { font-size: 14px; letter-spacing: -.01em; }
+    .brand span { color: var(--ink-soft); font-size: 11px; }
+    .score-card {
+      padding: 0 0 24px;
+      margin-bottom: 20px;
+      border: 0;
+      border-bottom: 1px solid rgba(0, 0, 0, .08);
+      border-radius: 0;
+      background: transparent;
+    }
+    .score-row { align-items: center; }
+    .score-row strong { font-size: 16px; font-weight: 600; letter-spacing: -.02em; }
+    .score-row span { color: var(--ink-soft); font-size: 11px; }
+    .score-bar { height: 3px; margin-top: 14px; background: #e8e8ed; }
+    .score-bar i { background: var(--peach); }
+    .chapters { gap: 4px; }
+    .chapter {
+      grid-template-columns: 28px 1fr auto;
+      padding: 9px 10px;
+      color: #86868b;
+      border-radius: 12px;
+    }
+    .chapter:hover { color: var(--ink); background: #f5f5f7; }
+    .chapter.active { color: var(--ink); background: #ededf0; }
+    .chapter.done { color: var(--ink); }
+    .chapter-index { width: 28px; height: 28px; border-radius: 50%; background: #f0f0f2; color: #6e6e73; }
+    .chapter.done .chapter-index { background: var(--ink); color: #fff; }
+    .chapter-name { font-size: 12px; font-weight: 560; }
+    .chapter-state { color: #a1a1a6; font-size: 10px; }
+    main { padding: 42px clamp(28px, 5vw, 84px) 64px; }
+    .topbar { width: min(860px, 100%); margin: 0 auto 28px; }
+    .eyebrow { color: #86868b; font-size: 10px; font-weight: 600; letter-spacing: .12em; }
+    .topbar h1 {
+      font-family: inherit;
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 600;
+      letter-spacing: -.04em;
+    }
+    .save-state { color: #6e6e73; font-size: 11px; font-weight: 500; }
+    .save-state::before { width: 7px; height: 7px; background: var(--mint); box-shadow: none; }
+    .stage { width: min(860px, 100%); }
+    .welcome {
+      min-height: 650px;
+      padding: 72px clamp(30px, 8vw, 92px);
+      border: 1px solid rgba(0, 0, 0, .06);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .welcome::before, .welcome::after { display: none; }
+    .welcome-inner { max-width: 680px; }
+    .welcome-badge {
+      padding: 0;
+      color: var(--peach);
+      background: transparent;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .welcome h2 {
+      margin: 24px 0 22px;
+      font-family: inherit;
+      font-size: clamp(46px, 6vw, 72px);
+      font-weight: 650;
+      line-height: 1.01;
+      letter-spacing: -.06em;
+    }
+    .welcome p { max-width: 600px; color: var(--ink-soft); font-size: 18px; line-height: 1.55; }
+    .welcome-meta { gap: 10px 26px; margin-bottom: 38px; color: #86868b; font-size: 12px; }
+    .primary, .secondary, .ghost { border-radius: 999px; padding: 13px 21px; font-weight: 600; }
+    .primary { background: var(--peach); box-shadow: none; }
+    .primary:hover { transform: none; background: #0077ed; box-shadow: none; }
+    .secondary { color: #fff; background: var(--ink); }
+    .secondary:hover { transform: none; background: #000; }
+    .ghost { color: #6e6e73; }
+    .ghost:hover { color: var(--ink); background: #ededf0; }
+    .question-card {
+      min-height: 600px;
+      padding: clamp(34px, 6vw, 64px);
+      border: 1px solid rgba(0, 0, 0, .06);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .question-head { margin-bottom: 46px; }
+    .section-chip {
+      padding: 0;
+      color: var(--peach);
+      background: transparent;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .1em;
+    }
+    .question-count { color: #a1a1a6; font-size: 11px; font-weight: 500; }
+    .question-card h2 {
+      max-width: 740px;
+      font-family: inherit;
+      font-size: clamp(35px, 5vw, 54px);
+      font-weight: 600;
+      line-height: 1.06;
+      letter-spacing: -.05em;
+    }
+    .question-help { margin: 16px 0 34px; color: #6e6e73; font-size: 15px; }
+    .text-input, .text-area {
+      border: 1px solid transparent;
+      border-radius: 15px;
+      color: var(--ink);
+      background: #f5f5f7;
+    }
+    .text-input { min-height: 60px; }
+    .text-area { min-height: 160px; }
+    .text-input:focus, .text-area:focus { border-color: var(--peach); background: #fff; box-shadow: 0 0 0 4px rgba(0,113,227,.12); }
+    .choices { gap: 10px; }
+    .choice {
+      min-height: 60px;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      color: var(--ink);
+      background: #f5f5f7;
+      font-weight: 560;
+    }
+    .choice:hover { border-color: #b6b6bb; transform: none; }
+    .choice.selected { border-color: var(--peach); background: #eef6ff; box-shadow: none; }
+    .choice-dot { border: 1.5px solid #a1a1a6; border-radius: 50%; }
+    .choice.selected .choice-dot { border-color: var(--peach); background: var(--peach); }
+    .scale button { border: 1px solid transparent; border-radius: 15px; background: #f5f5f7; font-weight: 600; }
+    .scale button.selected { border-color: var(--peach); color: #fff; background: var(--peach); }
+    .scale-labels { color: #86868b; }
+    .question-actions { border-top: 1px solid #ededf0; margin-top: auto; padding-top: 24px; }
+    .enter-hint { color: #a1a1a6; }
+    .review { border: 1px solid rgba(0,0,0,.06); background: #fff; box-shadow: var(--shadow); }
+    .review h2 { font-family: inherit; font-weight: 600; letter-spacing: -.05em; }
+    .review-section h3 { font-size: 11px; font-weight: 600; color: #86868b; }
+    .review-item dt { color: #86868b; }
+    .review-item dd { font-weight: 500; }
+    .review-actions { border-color: #d2d2d7; background: rgba(255,255,255,.88); }
+    .confetti { display: none !important; }
+    .toast { border-radius: 999px; background: rgba(29,29,31,.94); font-weight: 560; }
+    @media (max-width: 900px) {
+      main { padding: 22px 16px 36px; }
+      .mobile-progress { height: 3px; background: #e8e8ed; }
+      .mobile-progress i { background: var(--peach); }
+      .welcome { min-height: 620px; padding: 58px 26px; }
+      .question-card { min-height: calc(100vh - 112px); padding: 34px 24px; }
+    }
+    @media (max-width: 520px) {
+      .welcome h2 { font-size: 46px; }
+      .question-card h2 { font-size: 36px; }
+    }
   </style>
 </head>
 <body>
@@ -301,7 +489,7 @@
         <div><strong>Runner Marketing</strong><span>Estúdio de identidade visual</span></div>
       </div>
       <div class="score-card">
-        <div class="score-row"><div><span>Seu progresso</span><br><strong id="score">0 XP</strong></div><span id="percent">0%</span></div>
+        <div class="score-row"><div><span>Seu progresso</span><br><strong id="score">0 de 0</strong></div><span id="percent">0%</span></div>
         <div class="score-bar"><i id="scoreBar"></i></div>
       </div>
       <nav class="chapters" id="chapters"></nav>
@@ -309,7 +497,7 @@
 
     <main>
       <header class="topbar">
-        <div><p class="eyebrow">Briefing guiado</p><h1>Identidade visual</h1></div>
+        <div><p class="eyebrow">Briefing estratégico</p><h1>Identidade visual</h1></div>
         <div class="save-state" id="saveState">Rascunho salvo neste dispositivo</div>
       </header>
       <div class="mobile-progress"><i id="mobileBar"></i></div>
@@ -454,7 +642,7 @@
 
     function updateChrome() {
       const p = progress();
-      document.getElementById("score").textContent = `${p.answered * 10} XP`;
+      document.getElementById("score").textContent = `${p.answered} de ${p.total}`;
       document.getElementById("percent").textContent = `${p.percent}%`;
       document.getElementById("scoreBar").style.width = `${p.percent}%`;
       document.getElementById("mobileBar").style.width = `${p.percent}%`;
@@ -491,11 +679,11 @@
     function renderWelcome() {
       const hasDraft = Object.keys(state.answers).filter(k => k !== "data").length > 0;
       stage.innerHTML = `<div class="welcome"><div class="welcome-inner">
-        <span class="welcome-badge">✦ Uma conversa, não um interrogatório</span>
-        <h2>Sua marca começa por aqui.</h2>
-        <p>Vamos transformar ideias, histórias e preferências em uma direção clara para a identidade visual. Uma pergunta por vez, sem pressa.</p>
-        <div class="welcome-meta"><span>◷ Cerca de 15 minutos</span><span>✓ Salva automaticamente</span><span>↧ Resumo em Word no final</span></div>
-        <button class="primary" id="start">${hasDraft ? "Continuar de onde parei" : "Começar briefing"} →</button>
+        <span class="welcome-badge">Runner Marketing</span>
+        <h2>Uma identidade forte começa com clareza.</h2>
+        <p>Responda no seu ritmo. Cada resposta ajuda a construir uma direção visual mais precisa, coerente e própria para a sua marca.</p>
+        <div class="welcome-meta"><span>15–20 minutos</span><span>Salvamento automático</span><span>Resumo em Word</span></div>
+        <button class="primary" id="start">${hasDraft ? "Continuar briefing" : "Começar"} →</button>
       </div></div>`;
       document.getElementById("start").addEventListener("click", () => { state.started = true; save(); render(); });
     }
@@ -504,7 +692,7 @@
       const currentGlobal = sections.slice(0, state.section).reduce((n, s) => n + visibleQuestions(s).length, 0) + state.question + 1;
       const total = allVisibleQuestions().length;
       stage.innerHTML = `<article class="question-card">
-        <div class="question-head"><span class="section-chip">Capítulo ${state.section + 1} · ${sections[state.section].title}</span><span class="question-count">${currentGlobal} de ${total}</span></div>
+        <div class="question-head"><span class="section-chip">Etapa ${state.section + 1} · ${sections[state.section].title}</span><span class="question-count">${String(currentGlobal).padStart(2, "0")} / ${total}</span></div>
         <h2>${q.label}${q.required ? " *" : ""}</h2>
         ${q.help ? `<p class="question-help">${q.help}</p>` : `<div class="question-help"></div>`}
         <div class="field" id="field"></div>
@@ -631,7 +819,7 @@
         return `<section class="review-section"><h3>${sectionIndex + 1}. ${escapeHtml(section.title)}</h3><dl class="review-grid">${items}</dl></section>`;
       }).join("");
       stage.innerHTML = `<article class="review">
-        <div class="review-hero"><p class="eyebrow">Tudo pronto</p><h2>Seu briefing ganhou forma.</h2><p>Revise as informações abaixo. O botão de download cria um arquivo Word organizado por capítulos.</p></div>
+        <div class="review-hero"><p class="eyebrow">Etapa final</p><h2>Revise seu briefing.</h2><p>Confira as informações antes de gerar o documento. Você ainda pode voltar e editar qualquer resposta.</p></div>
         ${answeredSections}
         <div class="review-actions"><button class="ghost" id="edit">← Voltar e editar</button><button class="secondary" id="copy">Copiar resumo</button><button class="primary" id="download">Baixar resumo em Word ↓</button></div>
       </article>`;
@@ -675,7 +863,7 @@
         if (!answered.length) return "";
         return `<h2>${index + 1}. ${escapeHtml(section.title)}</h2>${answered.map(q => `<div class="item"><h3>${escapeHtml(q.label)}</h3><p>${escapeHtml(formatAnswer(q, state.answers[q.id])).replace(/\n/g, "<br>")}</p></div>`).join("")}`;
       }).join("");
-      const html = `<!doctype html><html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><title>Briefing de Identidade Visual</title><style>@page{size:21.59cm 27.94cm;margin:2.2cm}body{font-family:Arial,sans-serif;color:#24162f;line-height:1.5}h1{font-family:Georgia,serif;font-size:28pt;margin:0 0 6pt} .subtitle{font-size:15pt;color:#6a5d71;margin:0 0 28pt}h2{font-size:16pt;margin:24pt 0 12pt;border-bottom:1px solid #ded7e2;padding-bottom:6pt}h3{font-size:10pt;color:#6a5d71;margin:12pt 0 3pt}p{font-size:11pt;margin:0 0 10pt}.meta{font-size:9pt;color:#7b6e82;margin-bottom:24pt}.item{page-break-inside:avoid}</style></head><body><h1>Briefing de Identidade Visual</h1><p class="subtitle">${escapeHtml(brand)}</p><p class="meta">Responsável: ${escapeHtml(state.answers.responsavel || "Não informado")}<br>Data: ${escapeHtml(formatAnswer({type:"date"}, state.answers.data || ""))}</p>${sectionsHtml}</body></html>`;
+      const html = `<!doctype html><html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><title>Briefing de Identidade Visual</title><style>@page{size:21.59cm 27.94cm;margin:2.2cm}body{font-family:Arial,sans-serif;color:#1d1d1f;line-height:1.5}h1{font-size:27pt;margin:0 0 6pt;letter-spacing:-.4pt}.subtitle{font-size:15pt;color:#6e6e73;margin:0 0 28pt}h2{font-size:15pt;margin:24pt 0 12pt;border-bottom:1px solid #d2d2d7;padding-bottom:6pt}h3{font-size:10pt;color:#6e6e73;margin:12pt 0 3pt}p{font-size:11pt;margin:0 0 10pt}.meta{font-size:9pt;color:#86868b;margin-bottom:24pt}.item{page-break-inside:avoid}</style></head><body><h1>Briefing de Identidade Visual</h1><p class="subtitle">${escapeHtml(brand)}</p><p class="meta">Responsável: ${escapeHtml(state.answers.responsavel || "Não informado")}<br>Data: ${escapeHtml(formatAnswer({type:"date"}, state.answers.data || ""))}</p>${sectionsHtml}</body></html>`;
       const blob = new Blob(["\ufeff", html], { type: "application/msword;charset=utf-8" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
