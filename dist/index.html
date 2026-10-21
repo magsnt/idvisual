@@ -431,12 +431,7 @@
     }
 
     function isAnswered(q) {
-      let value = state.answers[q.id];
-      if (q.type === "date" && !value) {
-        value = new Date().toISOString().slice(0, 10);
-        state.answers[q.id] = value;
-        save();
-      }
+      const value = state.answers[q.id];
       return Array.isArray(value) ? value.length > 0 : value !== undefined && String(value).trim() !== "";
     }
 
@@ -535,7 +530,12 @@
 
     function renderField(q) {
       const field = document.getElementById("field");
-      const value = state.answers[q.id];
+      let value = state.answers[q.id];
+      if (q.type === "date" && !value) {
+        value = new Date().toISOString().slice(0, 10);
+        state.answers[q.id] = value;
+        save();
+      }
       if (["text", "email", "tel", "date"].includes(q.type)) {
         field.innerHTML = `<input class="text-input" type="${q.type}" id="answer" value="${escapeAttr(value || "")}" placeholder="${escapeAttr(q.placeholder || "")}" autocomplete="${q.type === "email" ? "email" : q.type === "tel" ? "tel" : "off"}" />`;
         document.getElementById("answer").addEventListener("input", e => { state.answers[q.id] = e.target.value; save(); });
